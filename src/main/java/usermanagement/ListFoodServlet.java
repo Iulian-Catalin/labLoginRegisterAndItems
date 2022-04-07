@@ -27,21 +27,14 @@ public class ListFoodServlet extends HttpServlet {
         {
 
             int iduser = (int)o;
-
+            String search = req.getParameter("search");
+            if(search==null)
+                search="";
 
             DBFoodList db = new DBFoodList();
-            List<MyFoodList> l = db.getFoodList(iduser);
-            List<String> listOfFood = new ArrayList<>();
-
-
-            for(int i = 0;i<l.size();i++) {
-
-                MyFoodList mfl = (MyFoodList) l.get(i);
-                listOfFood.add(mfl.getFoodName());
-            }
-
+            List<MyFoodList> l = db.getFoodList(iduser, search);
             JSONObject json = new JSONObject();
-            json.put("listFromBackend", listOfFood); // only food name
+            json.put("listFromBackend", l); // only food name
             String result = json.toString();
             returnJsonResponse(resp, result);
         }

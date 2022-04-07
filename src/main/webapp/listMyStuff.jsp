@@ -20,18 +20,36 @@
 %>
 
 Hello <b><%=email%></b>
+</p>
 
-<input type="text" id="name" placeholder="Add my food" />
-<input type="button" id="add" value="New" onClick="newToDo()" />
+<input type="text" placeholder="Search" onkeyup="search(this.value)">
+</p>
 <%--<input type="button" id="delete" value="Delete all" onClick="deleteAll()" />--%>
 
 <div id="listOfToDo">
+    <table border="1">
+        <thead>
+        <tr>
+<%--            <th onclick="sorteazaNume(this)">Obiect &dArr;</th>--%>
+            <th>Food</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody id="obiect">
 
+        </tbody>
+
+
+    </table>
 </div>
 
 <script>
     loadToDo();
 </script>
+
+</p>
+<input type="text" id="name" placeholder="Add my food" />
+<input type="button" id="add" value="New" onClick="newToDo()" />
 
 </p>
 <a href ="logout.jsp">Logout</a>

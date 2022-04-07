@@ -19,10 +19,10 @@ public class AddFoodServlet extends HttpServlet {
 
         HttpSession s = req.getSession();
         Object o = s.getAttribute("id"); // daca pe sesiune exista obiectul numit id sau nu exista voi lua diferite decizii
-
-        if(o!=null)
+        String foodname = req.getParameter("foodname");
+        if(o!=null && foodname!=null)
         {
-            String foodname = req.getParameter("foodname");
+
             LocalDate ld  = LocalDate.now();
             int iduser = (int)o;
 
@@ -32,7 +32,7 @@ public class AddFoodServlet extends HttpServlet {
         }
         else
         {
-            error(resp, "operation forbidden. user is not logged in.");
+            error(resp, "operation forbidden. user is not logged in or foodname is not arriving to server");
         }
     }
 

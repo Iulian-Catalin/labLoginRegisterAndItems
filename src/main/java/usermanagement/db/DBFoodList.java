@@ -21,7 +21,6 @@ public class DBFoodList {
 
             final String PASSWORD = System.getenv("PWDDB");
 
-            System.out.println("parola:"+PASSWORD);
 
             Class.forName("org.postgresql.Driver");
 
@@ -55,7 +54,7 @@ public class DBFoodList {
         return isInserted;
     }
 
-    public List<MyFoodList> getFoodList (int idUser) {
+    public List<MyFoodList> getFoodList (int idUser, String search) {
 
         MyFoodList mfl =null;
         List<MyFoodList> list = new ArrayList<>();
@@ -72,9 +71,11 @@ public class DBFoodList {
 
 
 
-            PreparedStatement pSt = conn.prepareStatement("select * from myfoodlist where iduser=?");
+            PreparedStatement pSt = conn.prepareStatement("select * from myfoodlist where iduser=? and foodname like CONCAT( '%',?,'%') ORDER BY fooddate desc");
+
 
             pSt.setInt(1, idUser);
+            pSt.setString(2, search);
 
 
             // 3. executie
@@ -131,7 +132,7 @@ public class DBFoodList {
 //        db.newFood(m3);
 //        db.newFood(m4);
 
-        List<MyFoodList> l = db.getFoodList(48);
+        List<MyFoodList> l = db.getFoodList(48,"");
 
         for(int i = 0;i<l.size();i++) {
 
