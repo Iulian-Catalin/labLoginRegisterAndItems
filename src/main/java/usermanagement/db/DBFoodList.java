@@ -16,10 +16,10 @@ public class DBFoodList {
         boolean isInserted=false;
         try {
             // 1. ma conectez la db
-            final String URL = "jdbc:postgresql://idc.cluster-custom-cjcsijnttbb2.eu-central-1.rds.amazonaws.com:5432/ionelcondor";
-            final String USERNAME = "ftuser";
+            final String URL = "jdbc:postgresql://localhost:5432/grupajava";
+            final String USERNAME = "postgres";
 
-            final String PASSWORD = System.getenv("PWDDB");
+            final String PASSWORD = "postgres";
 
 
             Class.forName("org.postgresql.Driver");
@@ -59,9 +59,10 @@ public class DBFoodList {
         MyFoodList mfl =null;
         List<MyFoodList> list = new ArrayList<>();
         // 1. ma conectez la db
-        final String URL = "jdbc:postgresql://idc.cluster-custom-cjcsijnttbb2.eu-central-1.rds.amazonaws.com:5432/ionelcondor";
-        final String USERNAME = "ftuser";
-        final String PASSWORD = System.getenv("PWDDB");
+        final String URL = "jdbc:postgresql://localhost:5432/grupajava";
+        final String USERNAME = "postgres";
+
+        final String PASSWORD = "postgres";
         int id =-1;
         try {
             Class.forName("org.postgresql.Driver");

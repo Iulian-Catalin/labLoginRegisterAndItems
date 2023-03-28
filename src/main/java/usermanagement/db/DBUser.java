@@ -15,10 +15,10 @@ public class DBUser {
         boolean isInserted=false;
         try {
             // 1. ma conectez la db
-            final String URL = "jdbc:postgresql://idc.cluster-custom-cjcsijnttbb2.eu-central-1.rds.amazonaws.com:5432/ionelcondor";
-            final String USERNAME = "ftuser";
+            final String URL = "jdbc:postgresql://localhost:5432/grupajava";
+            final String USERNAME = "postgres";
 
-            final String PASSWORD = System.getenv("PWDDB");
+            final String PASSWORD = "postgres";
 
             System.out.println("parola:"+PASSWORD);
 
@@ -56,9 +56,10 @@ public class DBUser {
 
         User u = null;
         // 1. ma conectez la db
-        final String URL = "jdbc:postgresql://idc.cluster-custom-cjcsijnttbb2.eu-central-1.rds.amazonaws.com:5432/ionelcondor";
-        final String USERNAME = "ftuser";
-        final String PASSWORD = System.getenv("PWDDB");
+        final String URL = "jdbc:postgresql://localhost:5432/grupajava";
+        final String USERNAME = "postgres";
+
+        final String PASSWORD = "postgres";
         int id =-1;
         try {
             Class.forName("org.postgresql.Driver");
