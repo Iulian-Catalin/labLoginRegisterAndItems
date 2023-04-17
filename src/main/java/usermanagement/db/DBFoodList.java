@@ -16,7 +16,7 @@ public class DBFoodList {
         boolean isInserted=false;
         try {
             // 1. ma conectez la db
-            final String URL = "jdbc:postgresql://localhost:5432/grupajava";
+            final String URL = "jdbc:postgresql://192.168.50.128:5432/postgres";
             final String USERNAME = "postgres";
 
             final String PASSWORD = "postgres";
@@ -59,7 +59,7 @@ public class DBFoodList {
         MyFoodList mfl =null;
         List<MyFoodList> list = new ArrayList<>();
         // 1. ma conectez la db
-        final String URL = "jdbc:postgresql://localhost:5432/grupajava";
+        final String URL = "jdbc:postgresql://192.168.50.128:5432/postgres";
         final String USERNAME = "postgres";
 
         final String PASSWORD = "postgres";
