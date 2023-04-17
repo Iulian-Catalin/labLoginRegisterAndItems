@@ -6,16 +6,16 @@
 </head>
 <body>
 
-<form name="register" action="userManagement" method="POST">
-    Email: <input type="text" name="email" id="email"/></br>
-    Pwd: <input type="text" name="pwd" id="pwd"/></br>
-    Confirm Pwd: <input type="text" name="confirmPwd" id="confirmPwd"/></br>
-    Confirm Terms&Conditions: <input type="text" name="accept" id="accept"/></br>
-    I want offers: <input type="text" name="offer" id="offer"/></br>
-    <input type="hidden" id="action" name="action" value="NEW">
-    <input type="submit" />
+<form action="userManagement" method="POST" name="register">
+    Email: <input id="email" name="email" type="text"/></br>
+    Pwd: <input id="pwd" name="pwd" type="text"/></br>
+    Confirm Pwd: <input id="confirmPwd" name="confirmPwd" type="text"/></br>
+    Confirm Terms&Conditions: <input id="accept" name="accept" type="text"/></br>
+    I want offers: <input id="offer" name="offer" type="text"/></br>
+    <input id="action" name="action" type="hidden" value="NEW">
+    <input type="submit"/>
 </form>
 </p>
-<a href ="login.html">Login</a>
+<a href="login.html">Login</a>
 </body>
 </html>

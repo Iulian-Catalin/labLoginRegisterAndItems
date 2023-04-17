@@ -1,6 +1,6 @@
 function newToDo() {
     var name = document.getElementById('name').value;
-    var urlEnc = encodeURI('addfood?foodname='+name)
+    var urlEnc = encodeURI('addfood?foodname=' + name)
     $.ajax({
         url: urlEnc
     }).done(function (response) {
@@ -12,8 +12,8 @@ function loadToDo() {
     $.ajax({
         url: 'listfood'
     }).done(function (response) {
-      //  printOnDiv(response.listFromBackend);
-          display(response.listFromBackend);
+        //  printOnDiv(response.listFromBackend);
+        display(response.listFromBackend);
     });
 }
 
@@ -25,11 +25,11 @@ function loadToDo() {
 //     });
 // }
 
-function display (lista) {
+function display(lista) {
     var randuri = "";
     lista.forEach(function (obiect) {
         randuri += "<tr>" +
-            "<td>" + obiect.foodName +"</td>" +
+            "<td>" + obiect.foodName + "</td>" +
             "<td>" + obiect.foodDate + "</td>" +
             // "<td> <a href='neverforget?action=delete&id="+obiect.id+"'>x</a></td>" +
             "</tr>";
@@ -58,10 +58,10 @@ function printOnDiv(listFromBackend) {
 
     for (var i = 0; i < listFromBackend.length; i++) {
         var elemC = listFromBackend[i];
-        var el = '<li>'+elemC.foodName+' '+elemC.foodDate+'</li>';
-        listHtml=listHtml+el;
+        var el = '<li>' + elemC.foodName + ' ' + elemC.foodDate + '</li>';
+        listHtml = listHtml + el;
     }
-    list.innerHTML = '<ol>'+listHtml+'</ol>';
+    list.innerHTML = '<ol>' + listHtml + '</ol>';
 }
 
 

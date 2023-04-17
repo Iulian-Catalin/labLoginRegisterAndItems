@@ -4,8 +4,19 @@ import java.time.LocalDate;
 
 public class MyFoodList {
 
-    private int id ;
+    private int id;
     private String foodName;
+    private LocalDate foodDate;
+    private int iduser;
+
+    public MyFoodList(String foodName, LocalDate foodDate, int iduser) {
+        this.foodName = foodName;
+        this.foodDate = foodDate;
+        this.iduser = iduser;
+    }
+
+    public MyFoodList() {
+    }
 
     @Override
     public String toString() {
@@ -23,18 +34,6 @@ public class MyFoodList {
 
     public void setIduser(int iduser) {
         this.iduser = iduser;
-    }
-
-    private LocalDate foodDate;
-    private int iduser;
-
-    public MyFoodList(String foodName, LocalDate foodDate, int iduser) {
-        this.foodName = foodName;
-        this.foodDate = foodDate;
-        this.iduser = iduser;
-    }
-
-    public MyFoodList() {
     }
 
     public int getId() {

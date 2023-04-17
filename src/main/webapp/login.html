@@ -6,14 +6,14 @@
 </head>
 <body>
 
-<form name="login" action="userManagement" method="POST">
-    Email: <input type="text" name="email" id="email"/></br>
-    Pwd: <input type="text" name="pwd" id="pwd"/></br>
+<form action="userManagement" method="POST" name="login">
+    Email: <input id="email" name="email" type="text"/></br>
+    Pwd: <input id="pwd" name="pwd" type="text"/></br>
 
-    <input type="hidden" id="action" name="action" value="LOGIN">
-    <input type="submit" />
+    <input id="action" name="action" type="hidden" value="LOGIN">
+    <input type="submit"/>
 </form>
 </p>
-<a href ="register.html">Register</a>
+<a href="register.html">Register</a>
 </body>
 </html>

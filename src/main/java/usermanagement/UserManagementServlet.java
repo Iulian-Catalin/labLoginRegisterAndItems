@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import usermanagement.db.DBUser;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -23,10 +22,9 @@ public class UserManagementServlet extends HttpServlet {
         boolean succes = false;
         if (action != null && action.equalsIgnoreCase("NEW")) {
 
-            succes= newUser(req, resp);
-            if(succes)
-            {
-                RequestDispatcher rd=req.getRequestDispatcher("login.html");
+            succes = newUser(req, resp);
+            if (succes) {
+                RequestDispatcher rd = req.getRequestDispatcher("login.html");
                 try {
                     rd.forward(req, resp);
                 } catch (ServletException e) {
@@ -34,9 +32,7 @@ public class UserManagementServlet extends HttpServlet {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
-            else
-            {
+            } else {
                 error(resp, "there is an error while trying to create this user, pls try again");
             }
 
@@ -46,9 +42,18 @@ public class UserManagementServlet extends HttpServlet {
         } else if (action != null && action.equalsIgnoreCase("LOGIN")) {
             //afisare
             succes = loginUser(req, resp);
-            if(succes) // in
+            if (succes) // in
             {
-                RequestDispatcher rd=req.getRequestDispatcher("listMyStuff.jsp");
+                RequestDispatcher rd = req.getRequestDispatcher("listMyStuff.jsp");
+                try {
+                    rd.forward(req, resp);
+                } catch (ServletException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                RequestDispatcher rd = req.getRequestDispatcher("login.html");
                 try {
                     rd.forward(req, resp);
                 } catch (ServletException e) {
@@ -57,19 +62,7 @@ public class UserManagementServlet extends HttpServlet {
                     e.printStackTrace();
                 }
             }
-            else
-            {
-                RequestDispatcher rd=req.getRequestDispatcher("login.html");
-                try {
-                    rd.forward(req, resp);
-                } catch (ServletException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        else if (action != null && action.equalsIgnoreCase("OUT")) {
+        } else if (action != null && action.equalsIgnoreCase("OUT")) {
             HttpSession s = req.getSession();
             s.invalidate();
             try {
@@ -77,9 +70,7 @@ public class UserManagementServlet extends HttpServlet {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-
-         else {
+        } else {
             System.out.println("nu a venit action, deci nu fac nimic ");
             error(resp, "erro on ui side");
         }
@@ -93,32 +84,29 @@ public class UserManagementServlet extends HttpServlet {
         String pwd = req.getParameter("pwd");
         String confirmPwd = req.getParameter("confirmPwd");
         String accepthtml = req.getParameter("accept");
-        String offerhtml= req.getParameter("offer");
+        String offerhtml = req.getParameter("offer");
 
-        System.out.println(pwd+confirmPwd);
+        System.out.println(pwd + confirmPwd);
         // validari
-        if(!pwd.equals(confirmPwd))
-        {
-           error(resp, "pwd is not the same as confirm password");
-           return false;
+        if (!pwd.equals(confirmPwd)) {
+            error(resp, "pwd is not the same as confirm password");
+            return false;
         }
-        if(!accepthtml.equals("YES"))
-        {
+        if (!accepthtml.equals("YES")) {
             error(resp, "you must accept terms and conditions");
             return false;
         }
 
 
-
-        boolean accept=false;
-        boolean offer=false;
-         if (accepthtml != null && accepthtml.equalsIgnoreCase("YES"))
-             accept=true;
+        boolean accept = false;
+        boolean offer = false;
+        if (accepthtml != null && accepthtml.equalsIgnoreCase("YES"))
+            accept = true;
         if (offerhtml != null && offerhtml.equalsIgnoreCase("YES"))
-            offer=true;
+            offer = true;
 
         DBUser dbUser = new DBUser();
-        User u = new User(email,pwd,confirmPwd, accept, offer);
+        User u = new User(email, pwd, confirmPwd, accept, offer);
         boolean inserted = dbUser.newUser(u);
 
 
@@ -130,7 +118,7 @@ public class UserManagementServlet extends HttpServlet {
         User u = null;
         String email = req.getParameter("email");
         String pwd = req.getParameter("pwd");
-        boolean isLoggedIn=false;
+        boolean isLoggedIn = false;
 
         DBUser dbUser = new DBUser();
         u = dbUser.login(email, pwd);
@@ -139,14 +127,13 @@ public class UserManagementServlet extends HttpServlet {
             HttpSession s = req.getSession();
             s.setAttribute("id", u.getId());
             s.setAttribute("email", u.getEmail());
-            isLoggedIn=true;
+            isLoggedIn = true;
         }
-       return isLoggedIn;
+        return isLoggedIn;
     }
 
 
-
-    private void error( HttpServletResponse resp, String mesaj) {
+    private void error(HttpServletResponse resp, String mesaj) {
 
         try {
             PrintWriter pw = resp.getWriter();
