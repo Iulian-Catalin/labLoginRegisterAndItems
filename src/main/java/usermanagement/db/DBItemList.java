@@ -1,15 +1,15 @@
 package usermanagement.db;
 
-import usermanagement.MyFoodList;
+import usermanagement.MyItemList;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBFoodList {
+public class DBItemList {
 
-    public boolean newFood(MyFoodList u) {
+    public boolean newItem(MyItemList u) {
 
         System.out.println(u);
 
@@ -27,10 +27,10 @@ public class DBFoodList {
             Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
             // 2. creez un prepared ststement si il populez cu date
-            PreparedStatement pSt = conn.prepareStatement("INSERT INTO myfoodlist (foodname,fooddate, iduser) VALUES(?,?, ?)");
-            pSt.setString(1,u.getFoodName());
+            PreparedStatement pSt = conn.prepareStatement("INSERT INTO myitemlist (itemname,itemdate, iduser) VALUES(?,?, ?)");
+            pSt.setString(1,u.getItemName());
 
-            Date date = Date.valueOf(u.getFoodDate());
+            Date date = Date.valueOf(u.getItemDate());
             pSt.setDate(2, date);
 
             pSt.setInt(3, u.getIduser());
@@ -54,10 +54,10 @@ public class DBFoodList {
         return isInserted;
     }
 
-    public List<MyFoodList> getFoodList (int idUser, String search) {
+    public List<MyItemList> getItemList(int idUser, String search) {
 
-        MyFoodList mfl =null;
-        List<MyFoodList> list = new ArrayList<>();
+        MyItemList mfl =null;
+        List<MyItemList> list = new ArrayList<>();
         // 1. ma conectez la db
         final String URL = "jdbc:postgresql://192.168.50.128:5432/postgres";
         final String USERNAME = "postgres";
@@ -72,7 +72,7 @@ public class DBFoodList {
 
 
 
-            PreparedStatement pSt = conn.prepareStatement("select * from myfoodlist where iduser=? and foodname like CONCAT( '%',?,'%') ORDER BY fooddate desc");
+            PreparedStatement pSt = conn.prepareStatement("select * from myitemlist where iduser=? and itemname like CONCAT( '%',?,'%') ORDER BY itemdate desc");
 
 
             pSt.setInt(1, idUser);
@@ -88,13 +88,13 @@ public class DBFoodList {
             // atata timp cat am randuri
             while (rs.next()) {
 
-                mfl = new MyFoodList();
+                mfl = new MyItemList();
                 mfl.setId(rs.getInt("id"));
-                mfl.setFoodName(rs.getString("foodname"));
+                mfl.setItemName(rs.getString("itemname"));
 
-                Date dateFromDB = rs.getDate("fooddate");
+                Date dateFromDB = rs.getDate("itemdate");
                 LocalDate localDate = dateFromDB.toLocalDate();
-                mfl.setFoodDate(localDate);
+                mfl.setItemDate(localDate);
 
 
                 list.add(mfl);
@@ -117,14 +117,14 @@ public class DBFoodList {
 
     public static void main(String[] args) {
 
-        DBFoodList db = new DBFoodList();
+        DBItemList db = new DBItemList();
 
-//       MyFoodList m0 = new MyFoodList("pizza", LocalDate.now(), 48 );
+//       MyItemList m0 = new MyItemList("pizza", LocalDate.now(), 48 );
 //
-//        MyFoodList m1 = new MyFoodList("cartofi cu ceapa ", LocalDate.now(), 48 );
-//        MyFoodList m2 = new MyFoodList("peste cu morcovi", LocalDate.now(), 48 );
-//        MyFoodList m3 = new MyFoodList("inghetata de vanilie", LocalDate.now(), 48 );
-//        MyFoodList m4 = new MyFoodList("fructe de mare", LocalDate.now(), 48 );
+//        MyItemList m1 = new MyItemList("cartofi cu ceapa ", LocalDate.now(), 48 );
+//        MyItemList m2 = new MyItemList("peste cu morcovi", LocalDate.now(), 48 );
+//        MyItemList m3 = new MyItemList("inghetata de vanilie", LocalDate.now(), 48 );
+//        MyItemList m4 = new MyItemList("fructe de mare", LocalDate.now(), 48 );
 //
 //
 //        db.newFood(m0);
@@ -133,11 +133,11 @@ public class DBFoodList {
 //        db.newFood(m3);
 //        db.newFood(m4);
 
-        List<MyFoodList> l = db.getFoodList(48,"");
+        List<MyItemList> l = db.getItemList(48,"");
 
         for(int i = 0;i<l.size();i++) {
 
-            MyFoodList mfl = (MyFoodList) l.get(i);
+            MyItemList mfl = (MyItemList) l.get(i);
 
             System.out.println(mfl.toString()); // just to test we get the right data from db
         }

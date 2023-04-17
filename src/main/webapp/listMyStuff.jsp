@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>List my stuff</title>
     <script src="actiuni.js" type="text/javascript"></script>
-    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 
@@ -31,7 +31,7 @@ Hello <b><%=email%>
         <thead>
         <tr>
             <%--            <th onclick="sorteazaNume(this)">Obiect &dArr;</th>--%>
-            <th>Food</th>
+            <th>Item</th>
             <th>Date</th>
         </tr>
         </thead>
@@ -48,12 +48,11 @@ Hello <b><%=email%>
 </script>
 
 </p>
-<input type="text" id="name" placeholder="Add my food"/>
+<input type="text" id="name" placeholder="Add my item"/>
 <input type="button" id="add" value="New" onClick="newToDo()"/>
 
 </p>
 <a href="logout.jsp">Logout</a>
 
-<%--<a href ="http://localhost:8080/labLoginRegisterAndItems_war_exploded/userManagement?action=OUT">Logout</a>--%>
 </body>
 </html>

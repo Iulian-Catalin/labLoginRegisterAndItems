@@ -6,14 +6,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.json.JSONObject;
-import usermanagement.db.DBFoodList;
+import usermanagement.db.DBItemList;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/listfood")
-public class ListFoodServlet extends HttpServlet {
+@WebServlet("/listitem")
+public class ListItemServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) {
@@ -29,8 +29,8 @@ public class ListFoodServlet extends HttpServlet {
             if (search == null)
                 search = "";
 
-            DBFoodList db = new DBFoodList();
-            List<MyFoodList> l = db.getFoodList(iduser, search);
+            DBItemList db = new DBItemList();
+            List<MyItemList> l = db.getItemList(iduser, search);
             JSONObject json = new JSONObject();
             json.put("listFromBackend", l); // only food name
             String result = json.toString();
